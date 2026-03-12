@@ -11,11 +11,19 @@ def main() -> None:
         raise SystemExit("Error: both inputs must be numbers.") from exc
 
     total = a + b
+    product = a * b
+    inputs_are_int = all(p.isdigit() or (p.startswith("-") and p[1:].isdigit()) for p in parts)
+
     # Print as int if both inputs were integers
-    if total.is_integer() and all(p.isdigit() or (p.startswith("-") and p[1:].isdigit()) for p in parts):
-        print(int(total))
+    if inputs_are_int and total.is_integer():
+        print(f"Sum: {int(total)}")
     else:
-        print(total)
+        print(f"Sum: {total}")
+
+    if inputs_are_int and product.is_integer():
+        print(f"Product: {int(product)}")
+    else:
+        print(f"Product: {product}")
 
 
 if __name__ == "__main__":
